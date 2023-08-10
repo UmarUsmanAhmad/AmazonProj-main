@@ -104,7 +104,7 @@ color: red;
     background-color: #d9e7ea;
 }
 .box{
-    height: 400px;
+    height: 200px;
     width: 21%;
     background-color: white;
     padding: 20px 0px 15px;
@@ -131,55 +131,16 @@ a{
 a:hover{
     border: 2px solid rgba(169, 41, 41,0.5);
 }
-.electronicsbox{
-    background-image: url("");
-    background-size: cover;
-    height: 300px;
+.Mobiles{
+
+    width: 120px;
+    height: 120px;
+    align-items: center;
     margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-.healthcarebox{
-    background-image: url("");
-    background-size: cover;
-    height: 300px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-.contructionbox{
-    background-image: url("");
-    background-size: cover;
-    height: 300px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-.Fitness{
-    background-image: url("");
-    background-size: cover;
-    height: 300px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-.kitchen{
-    background-image: url("");
-    background-size: cover;
-    height: 300px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-.Fashion{
-    background-image: url("");
-    background-size: cover;
-    height: 300px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-.kidsbox{
-    background-image: url("");
-    background-size:contain;
-    height: 300px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
     background-repeat: no-repeat;
+}
+.price{
+    margin-bottom: 10px;
 }
 .Sale{
     background-image: url("");
@@ -257,7 +218,7 @@ a:hover{
   
     .backgroundimage {
       height: 300px;
-    }
-  
+    } 
+    
   }
   

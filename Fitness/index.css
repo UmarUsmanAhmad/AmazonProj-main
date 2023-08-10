@@ -103,6 +103,53 @@ color: red;
     justify-content: space-evenly;
     background-color: #d9e7ea;
 }
+.box{
+    height: 200px;
+    width: 21%;
+    background-color: white;
+    padding: 20px 0px 15px;
+    margin-top: 15px;
+    border: 2px solid white;
+}
+.box:hover{
+    border: 2px solid rgba(169, 41, 41,0.5);
+    cursor: pointer;
+}
+.box-content{
+margin-left: 10px;
+margin-right: 10px;
+text-align: center;
+
+}
+.box-content p{
+    color: #007185;
+}
+a{
+    color: #007185;
+    border: 2px solid transparent;
+}
+a:hover{
+    border: 2px solid rgba(169, 41, 41,0.5);
+}
+.Mobiles{
+
+    width: 120px;
+    height: 120px;
+    align-items: center;
+    margin-top: 1rem;
+    background-repeat: no-repeat;
+}
+.price{
+    margin-bottom: 10px;
+}
+.Sale{
+    background-image: url("");
+    background-size: contain;
+    height: 300px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-repeat: no-repeat;
+}
 .border{
     border: 1px transparent solid;
 }
@@ -118,6 +165,7 @@ color: red;
     color: red;
     cursor: pointer;
 }
+
 @media only screen and (max-width: 600px) {
     .nav-bar {
         flex-direction: column; 
@@ -167,4 +215,10 @@ color: red;
     .delivery {
         font-size: 0.9rem;
       }
-    }
+  
+    .backgroundimage {
+      height: 300px;
+    } 
+    
+  }
+  

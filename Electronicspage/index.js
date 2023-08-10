@@ -16,131 +16,180 @@ function ShowCartbox(event) {
   
   document.addEventListener('click', ShowCartbox);
   
-  
-
-//Function for adding items into Cart. "X" is a variable for counting Total Items
-
-var x = 0;
-document.getElementById("Totalitems").innerText = x;
-let totalPrice = 0;
-
+//Function for adding items into Cart.
 function additems(boxContent) {
-  const cartbox = document.getElementById('cart-box');
-  
-  const totalPriceElement = document.getElementById('TotalPrice');
-  const price = boxContent.querySelector('.price'); 
-  const NewPriceremovingDollarSign = parseInt(price.textContent.replace('$','')); 
   const cartItems = document.getElementById("cart-items");
-  const numberswithcart = document.getElementById("numbers");
   const listItem = document.createElement("li");
   const itemDiv = document.createElement("div");
   itemDiv.classList.add("cart-item");
-  const MobileName= boxContent.querySelector('h2').innerHTML;
   
-  const newOl = cartbox.querySelector('ol');
-  const newElem= newOl.getElementsByTagName('li');
-
-  console.log(newOl);
-
- /* newElem.forEach(element => {
-    console.log(newElem);
-  });*/
-
   itemDiv.innerHTML = boxContent.innerHTML;
   itemDiv.dataset.quantity = 1;
+  listItem.appendChild(itemDiv);
+  cartItems.appendChild(listItem);
+  
+  const addbuttn = itemDiv.querySelector("a");
+  if (addbuttn) {
+    addbuttn.remove();
+  }
+  quantityCounter(itemDiv);
+  minusButton(itemDiv);
+  plusButton(itemDiv);
+  removeButton(itemDiv);
+  totalquantityIncreament();
   
   
-  x = x + 1;
-  numberswithcart.innerHTML = x;
+  let totalPriceElement = document.getElementById("TotalPrice");
+  if (!totalPriceElement) {
+    totalPriceElement = document.createElement("div");
+    totalPriceElement.id = "TotalPrice";
+    document.getElementById("cart-box").appendChild(totalPriceElement);
+  }
+  
+  totalPrice();
+}
+/*
+function existingItem(boxContent) {
+  const cartbox = document.getElementById("cart-box");
+  const MobileName = boxContent.querySelector("h2").innerHTML;
+  const newOl = cartbox.querySelector("ol");
+  const newElem = newOl.getElementsByTagName("li");
 
-  //TotalPrice
-  totalPrice += NewPriceremovingDollarSign;
-  totalPriceElement.innerHTML = `Totalprice: $${totalPrice}`;
- 
-  //RemoveButton
-  const removeButton = document.createElement("button");
-  removeButton.classList.add("remove-button");
-  removeButton.textContent = "Remove";
-  removeButton.addEventListener("click", function () {
-  listItem.remove();
-  x = x - 1;
-  totalPrice -= NewPriceremovingDollarSign;
-  totalPriceElement.innerHTML = `Totalprice: $${totalPrice}`;
-  numberswithcart.innerHTML = x;
-   
-  document.getElementById("Totalitems").innerText = x;
-  });
+  for (var i = 0; i < newElem.length; i++) {
+    const itemName = newElem[i].querySelector("h2").innerHTML;
+    
+    if (itemName === MobileName) {
+      const quantityText = newElem[i].querySelector("#Span");
+      const newQuantity = parseInt(newElem[i].dataset.quantity) + 1;
+      newElem[i].dataset.quantity = newQuantity;
+      quantityText.textContent = newQuantity;
 
-
-//Making a new div for plus and minus button
-//Minusbutton and Plusbutton Function
-
-  const quantityContainer = document.createElement("div");
-  quantityContainer.classList.add("quantity-container");
-  const minusButton = document.createElement("button");
-  minusButton.textContent = "-";
-  minusButton.classList.add("minus-button");
-  const quantityText = document.createElement("span");
-  quantityText.textContent = itemDiv.dataset.quantity;
-  const plusButton = document.createElement("button");
-  plusButton.textContent = "+";
-  plusButton.classList.add("plus-button");
-
-  minusButton.addEventListener("click", function () {
-  const quantity = parseInt(itemDiv.dataset.quantity, 10);
-    if (quantity > 1) {
-      itemDiv.dataset.quantity = quantity - 1;
-      quantityText.textContent = itemDiv.dataset.quantity;
-      x = x - 1;
-      numberswithcart.innerHTML = x;
+      x = parseInt(document.getElementById("Totalitems").innerText, 10);
+      x += 1;
       document.getElementById("Totalitems").innerText = x;
-      totalPrice -= NewPriceremovingDollarSign;
-      totalPriceElement.innerText = `Totalprice: $${totalPrice}`;
-    }else {
-      listItem.remove();
-      x = x - 1;
-      numberswithcart.innerHTML = x;
-      document.getElementById("Totalitems").innerText = x;
-      totalPrice -= NewPriceremovingDollarSign;
-      totalPriceElement.innerText = `Totalprice: $${totalPrice}`;
+
+      return;
     }
-  });
-
-  plusButton.addEventListener("click", function () { 
-    itemDiv.dataset.quantity = parseInt(itemDiv.dataset.quantity, 10) + 1;
-    quantityText.textContent = itemDiv.dataset.quantity;
-    x = x + 1;
-    numberswithcart.innerHTML = x;
-    document.getElementById("Totalitems").innerText = x;
-    totalPrice += NewPriceremovingDollarSign;
-  totalPriceElement.innerHTML = `Totalprice: $${totalPrice}`;
-  });
-
-  quantityContainer.appendChild(minusButton);
-  quantityContainer.appendChild(quantityText);
-  quantityContainer.appendChild(plusButton);
-
-  itemDiv.appendChild(quantityContainer);
-  itemDiv.appendChild(removeButton);
-
-  const seeMoreLink = itemDiv.querySelector("a");
-  if (seeMoreLink) {
-    seeMoreLink.remove();
   }
 
-  listItem.appendChild(itemDiv);
-  listItem.removeEventListener("click", additems);
-  cartItems.appendChild(listItem);
+  
+}*/
+  //RemoveButton Function
+  function removeButton(listItem) {
+    const removeButton = document.createElement("button");
+    removeButton.classList.add("remove-button");
+    removeButton.textContent = "Remove";
+  
+    removeButton.addEventListener("click", function () {
+      listItem.remove();
+      totalquantityDecreament();
+      listItem.appendChild(removeButton);
+  
+  // Check if all items are removed, then reset cart
+      if (document.querySelectorAll(".cart-item").length === 0) {
+        const cartItems = document.getElementById("cart-items");
+        cartItems.innerHTML = "";
+        document.getElementById("numbers").innerText = "0";
+        document.getElementById("Totalitems").innerText = "0";
+        const totalPriceElement = document.getElementById("TotalPrice");
+        totalPriceElement.parentNode.removeChild(totalPriceElement); // Remove the TotalPrice element
+      }
+  
+      totalPrice();
+    });
+  
+    listItem.appendChild(removeButton);
+  }
+   
+  //Quantity counter
+    function quantityCounter(itemDiv) {
+      const quantityContainer = document.createElement("div");
+      quantityContainer.classList.add("quantity-container");
+      
+      const minusButtonElement = minusButton(itemDiv); 
+      const quantityText = document.createElement("span");
+      quantityText.id = "Span";
+      quantityText.textContent = itemDiv.dataset.quantity;
+      const plusButtonElement = plusButton(itemDiv);
+      
+      quantityContainer.appendChild(minusButtonElement);
+      quantityContainer.appendChild(quantityText);
+      quantityContainer.appendChild(plusButtonElement);
+      
+      itemDiv.appendChild(quantityContainer);
+    }
+  //Minusbutton Function
+    function minusButton(itemDiv) {
+      const minusButtonElement = document.createElement("button");
+      minusButtonElement.textContent = "-";
+      minusButtonElement.classList.add("minus-button");
+
+      minusButtonElement.addEventListener("click", function () {
+        const quantity = parseInt(itemDiv.dataset.quantity, 10);
+        if (quantity > 1) {
+          itemDiv.dataset.quantity = quantity - 1;
+          totalquantityDecreament();
+          const quantityText = itemDiv.querySelector("#Span");
+          quantityText.textContent = itemDiv.dataset.quantity;
+          totalPrice(); 
+        }
+      });
+
+      return minusButtonElement;
+    }
+  //Plusbutton Function
+    function plusButton(itemDiv) {
+      const plusButtonElement = document.createElement("button");
+      plusButtonElement.textContent = "+";
+      plusButtonElement.classList.add("plus-button");
+
+      plusButtonElement.addEventListener("click", function () {
+        itemDiv.dataset.quantity = parseInt(itemDiv.dataset.quantity, 10) + 1;
+        totalquantityIncreament();
+        const quantityText = itemDiv.querySelector("#Span");
+        quantityText.textContent = itemDiv.dataset.quantity;
+        totalPrice(); 
+      });
+
+      return plusButtonElement;
+    }
+
+//TotalQuantity ++
+ function totalquantityIncreament() {
+  const numberswithcart = document.getElementById("numbers");
+  let x = parseInt(numberswithcart.innerText, 10) + 1;
+  numberswithcart.innerHTML = x;
+  // TotalItems
   document.getElementById("Totalitems").innerText = x;
 }
-//Login website
-function loginwebsitefun(){
-  window.location.href= "../Login/index.html";
+//TotalQuantity --
+function totalquantityDecreament() {
+  const numberswithcart = document.getElementById("numbers");
+  let x = parseInt(numberswithcart.innerText, 10) - 1;
+  numberswithcart.innerHTML = x;
+  // TotalItems
+  document.getElementById("Totalitems").innerText = x;
 }
-//HomePage
-function homepage(){
-  window.location.href= "../index.html";
 
+//TotalPrice
+function totalPrice() {
+  const totalPriceElement = document.getElementById("TotalPrice");
+  const cartItems = document.querySelectorAll(".cart-item");
+
+  if (totalPriceElement) { // Check if TotalPrice element exists
+    let totalPrice = 0;
+
+    cartItems.forEach((cartItem) => {
+      const price = cartItem.querySelector(".price");
+      const NewPriceremovingDollarSign = parseInt(
+        price.textContent.replace("$", "")
+      );
+      const quantity = parseInt(cartItem.dataset.quantity, 10);
+      totalPrice += NewPriceremovingDollarSign * quantity;
+    });
+
+    totalPriceElement.innerHTML = `Total price: $${totalPrice}`;
+  }
 }
 
 
@@ -208,6 +257,17 @@ return (shopContainer.innerHTML=phones.map((x)=>{
 
 generatedivs();
 
+
+
+//Login website
+function loginwebsitefun(){
+  window.location.href= "../Login/index.html";
+}
+//HomePage
+function homepage(){
+  window.location.href= "../index.html";
+
+}
 
 /*
 let prices = document.getElementById('price').innerHTML;
