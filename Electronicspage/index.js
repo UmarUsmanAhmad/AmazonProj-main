@@ -187,7 +187,10 @@ function plusButton(itemDiv) {
 //TotalQuantity ++
 function totalquantityIncreament() {
   const numberswithcart = document.getElementById("numbers");
-  let x = parseInt(numberswithcart.innerText, 10) + 1;
+  console.log(numberswithcart.innerHTML);
+  let x = !numberswithcart.innerHTML
+    ? 1
+    : parseInt(numberswithcart.innerHTML, 10) + 1;
 
   numberswithcart.innerHTML = x;
   // TotalItems
@@ -196,7 +199,7 @@ function totalquantityIncreament() {
 //TotalQuantity --
 function totalquantityDecreament() {
   const numberswithcart = document.getElementById("numbers");
-  let x = parseInt(numberswithcart.innerText, 10) - 1;
+  let x = parseInt(numberswithcart.innerHTML, 10) - 1;
   numberswithcart.innerHTML = x;
   // TotalItems
   document.getElementById("Totalitems").innerText = x;
