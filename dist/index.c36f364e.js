@@ -16,9 +16,6 @@ function loginwebsitefun() {
 function homepage() {
     window.location.href = "./index.html";
 }
-function Electronicspage() {
-    window.location.href = "./Electronicspage/index.html";
-}
 function Fashiontrendspage() {
     window.location.href = "./Fashiontrendpage/index.html";
 }
