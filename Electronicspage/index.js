@@ -187,7 +187,6 @@ function plusButton(itemDiv) {
 //TotalQuantity ++
 function totalquantityIncreament() {
   const numberswithcart = document.getElementById("numbers");
-  console.log(numberswithcart.innerHTML);
   let x = !numberswithcart.innerHTML
     ? 1
     : parseInt(numberswithcart.innerHTML, 10) + 1;
