@@ -1,3 +1,53 @@
+const phones = [
+    {
+        id: "1",
+        Name: "Iphone14pro",
+        Price: "14000",
+        image: "./firstimage.webp"
+    },
+    {
+        id: "2",
+        Name: "Iphone13",
+        Price: "13000",
+        image: "./iphone13.avif"
+    },
+    {
+        id: "3",
+        Name: "Iphone12",
+        Price: "12000",
+        image: "./iphone12.avif"
+    },
+    {
+        id: "4",
+        Name: "Iphone11",
+        Price: "11000",
+        image: "./iphone11.webp"
+    },
+    {
+        id: "5",
+        Name: "Galaxys23",
+        Price: "12000",
+        image: "./Samsung23.avif"
+    },
+    {
+        id: "6",
+        Name: "Galaxys22",
+        Price: "11000",
+        image: "./S22.avif"
+    },
+    {
+        id: "7",
+        Name: "Galaxys21",
+        Price: "10000",
+        image: "./s21.webp"
+    },
+    {
+        id: "8",
+        Name: "Galaxys20",
+        Price: "9000",
+        image: "./s20.jpg"
+    }
+];
 //Function for cart hide and visible
 function ShowCartbox(event) {
     const cartBox = document.getElementById("cart-box");
@@ -16,52 +66,44 @@ function additems(boxContent) {
     const cartItems = document.getElementById("cart-items");
     const listItem = document.createElement("li");
     const itemDiv = document.createElement("div");
+    listItem.classList.add("item");
     itemDiv.classList.add("cart-item");
-    itemDiv.innerHTML = boxContent.innerHTML;
-    itemDiv.dataset.quantity = 1;
-    listItem.appendChild(itemDiv);
-    cartItems.appendChild(listItem);
-    const addbuttn = itemDiv.querySelector("a");
-    if (addbuttn) addbuttn.remove();
-    quantityCounter(itemDiv);
-    minusButton(itemDiv);
-    plusButton(itemDiv);
-    removeButton(itemDiv);
-    totalquantityIncreament();
-    let totalPriceElement = document.getElementById("TotalPrice");
-    if (!totalPriceElement) {
-        totalPriceElement = document.createElement("div");
-        totalPriceElement.id = "TotalPrice";
-        document.getElementById("cart-box").appendChild(totalPriceElement);
+    if (cartItems.children.length, checkExistingItem(boxContent, cartItems)) {
+        itemDiv.innerHTML = boxContent.innerHTML;
+        itemDiv.dataset.quantity = 1;
+        listItem.appendChild(itemDiv);
+        cartItems.appendChild(listItem);
+        const addbuttn = itemDiv.querySelector("a");
+        if (addbuttn) addbuttn.remove();
+        quantityCounter(itemDiv);
+        minusButton(itemDiv);
+        plusButton(itemDiv);
+        removeButton(itemDiv);
+        totalquantityIncreament();
+        let totalPriceElement = document.getElementById("TotalPrice");
+        if (!totalPriceElement) {
+            totalPriceElement = document.createElement("div");
+            totalPriceElement.id = "TotalPrice";
+            document.getElementById("cart-box").appendChild(totalPriceElement);
+        }
+        totalPrice();
     }
-    totalPrice();
 }
-/*
-function existingItem(boxContent) {
-  const cartbox = document.getElementById("cart-box");
-  const MobileName = boxContent.querySelector("h2").innerHTML;
-  const newOl = cartbox.querySelector("ol");
-  const newElem = newOl.getElementsByTagName("li");
-
-  for (var i = 0; i < newElem.length; i++) {
-    const itemName = newElem[i].querySelector("h2").innerHTML;
-    
-    if (itemName === MobileName) {
-      const quantityText = newElem[i].querySelector("#Span");
-      const newQuantity = parseInt(newElem[i].dataset.quantity) + 1;
-      newElem[i].dataset.quantity = newQuantity;
-      quantityText.textContent = newQuantity;
-
-      x = parseInt(document.getElementById("Totalitems").innerText, 10);
-      x += 1;
-      document.getElementById("Totalitems").innerText = x;
-
-      return;
+function checkExistingItem(newItem, existingItems) {
+    var items = existingItems.getElementsByClassName("item");
+    let flag = true;
+    for(i = 0; i < items.length; i++)if (items[i].querySelector("h2").innerHTML === newItem.querySelector("h2").innerHTML) {
+        const findIten = items[i].querySelector("div");
+        findIten.dataset.quantity = parseInt(findIten.dataset.quantity, 10) + 1;
+        totalquantityIncreament();
+        const quantityText = findIten.querySelector("#Span");
+        quantityText.textContent = findIten.dataset.quantity;
+        totalPrice();
+        return flag = false;
     }
-  }
-
-  
-}*/ //RemoveButton Function
+    return flag;
+}
+//RemoveButton Function
 function removeButton(listItem) {
     const removeButton = document.createElement("button");
     removeButton.classList.add("remove-button");
@@ -120,6 +162,7 @@ function plusButton(itemDiv) {
     plusButtonElement.textContent = "+";
     plusButtonElement.classList.add("plus-button");
     plusButtonElement.addEventListener("click", function() {
+        console.log(itemDiv);
         itemDiv.dataset.quantity = parseInt(itemDiv.dataset.quantity, 10) + 1;
         totalquantityIncreament();
         const quantityText = itemDiv.querySelector("#Span");
@@ -149,6 +192,7 @@ function totalPrice() {
     const totalPriceElement = document.getElementById("TotalPrice");
     const cartItems = document.querySelectorAll(".cart-item");
     if (totalPriceElement) {
+        // Check if TotalPrice element exists
         let totalPrice = 0;
         cartItems.forEach((cartItem)=>{
             const price = cartItem.querySelector(".price");
@@ -160,56 +204,6 @@ function totalPrice() {
     }
 }
 //Making Divs With JS
-let phones = [
-    {
-        id: "1",
-        Name: "Iphone14pro",
-        Price: "14000",
-        image: "./firstimage.webp"
-    },
-    {
-        id: "2",
-        Name: "Iphone13",
-        Price: "13000",
-        image: "./iphone13.avif"
-    },
-    {
-        id: "3",
-        Name: "Iphone12",
-        Price: "12000",
-        image: "./iphone12.avif"
-    },
-    {
-        id: "4",
-        Name: "Iphone11",
-        Price: "11000",
-        image: "./iphone11.webp"
-    },
-    {
-        id: "5",
-        Name: "Galaxys23",
-        Price: "12000",
-        image: "./Samsung23.avif"
-    },
-    {
-        id: "6",
-        Name: "Galaxys22",
-        Price: "11000",
-        image: "./S22.avif"
-    },
-    {
-        id: "7",
-        Name: "Galaxys21",
-        Price: "10000",
-        image: "./s21.webp"
-    },
-    {
-        id: "8",
-        Name: "Galaxys20",
-        Price: "9000",
-        image: "./s20.jpg"
-    }
-];
 let shopContainer = document.getElementById("shopContainer");
 const generatedivs = ()=>{
     return shopContainer.innerHTML = phones.map((x)=>{
