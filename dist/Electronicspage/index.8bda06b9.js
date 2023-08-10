@@ -68,7 +68,7 @@ function additems(boxContent) {
     const itemDiv = document.createElement("div");
     listItem.classList.add("item");
     itemDiv.classList.add("cart-item");
-    if (cartItems.children.length, checkExistingItem(boxContent, cartItems)) {
+    if (cartItems.children.length !== 0 ? checkExistingItem(boxContent, cartItems) : true) {
         itemDiv.innerHTML = boxContent.innerHTML;
         itemDiv.dataset.quantity = 1;
         listItem.appendChild(itemDiv);

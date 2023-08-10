@@ -54,7 +54,7 @@ function additems(boxContent) {
   listItem.classList.add("item");
   itemDiv.classList.add("cart-item");
   if (
-    !cartItems.children.length !== 0
+    cartItems.children.length !== 0
       ? checkExistingItem(boxContent, cartItems)
       : true
   ) {
