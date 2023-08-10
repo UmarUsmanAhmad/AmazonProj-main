@@ -1,0 +1,301 @@
+* {
+  border: border-box;
+  margin: 0;
+  font-family: Arial;
+}
+
+.nav-bar {
+  color: #fff;
+  background-color: #000;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 60px;
+  display: flex;
+}
+
+.nav-logo {
+  width: 110px;
+  height: 50px;
+}
+
+.logo {
+  cursor: pointer;
+  background-image: url("logo.3eb009db.png");
+  background-size: cover;
+  width: 100%;
+  height: 50px;
+}
+
+.delivery {
+  cursor: pointer;
+}
+
+.search-bar {
+  border: 2px solid #fff;
+  border-radius: 2px;
+  align-items: center;
+  height: 30px;
+  display: flex;
+}
+
+#search {
+  width: 400px;
+  height: 30px;
+  font-size: 1rem;
+}
+
+#select {
+  cursor: pointer;
+  border: 0;
+  height: 30px;
+  font-size: 1rem;
+}
+
+.search-logo {
+  cursor: pointer;
+  width: 30px;
+  font-size: 1.5rem;
+}
+
+.login {
+  cursor: pointer;
+}
+
+.Cart {
+  font-size: 1rem;
+  display: flex;
+}
+
+.Cart:hover {
+  cursor: pointer;
+}
+
+#numbers {
+  color: red;
+  margin-left: 10px;
+}
+
+.cart-box {
+  cursor: pointer;
+  visibility: hidden;
+  background-color: #faf6f6;
+  width: 250px;
+  height: 460px;
+  padding: 20px;
+  transition: right .5s ease-out;
+  position: absolute;
+  top: 60px;
+  overflow-y: auto;
+}
+
+.cart-item-content {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.cart-item-content .item-title {
+  flex-grow: 1;
+}
+
+.TotalItems {
+  justify-content: space-evenly;
+  align-items: center;
+  display: flex;
+}
+
+.backgroundimage {
+  background-image: url("Backgroundimage.4ba92394.avif");
+  background-size: cover;
+  height: 500px;
+}
+
+.shop-section {
+  background-color: #d9e7ea;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  display: flex;
+}
+
+.box {
+  background-color: #fff;
+  border: 2px solid #fff;
+  width: 21%;
+  height: 400px;
+  margin-top: 15px;
+  padding: 20px 0 15px;
+}
+
+.box:hover {
+  cursor: pointer;
+  border: 2px solid #a9292980;
+}
+
+.box-content {
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.box-content p {
+  color: #007185;
+}
+
+a {
+  color: #007185;
+  border: 2px solid #0000;
+}
+
+a:hover {
+  border: 2px solid #a9292980;
+}
+
+.electronicsbox {
+  background-image: url("Electronicboximage.50986bc0.avif");
+  background-size: cover;
+  height: 300px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.healthcarebox {
+  background-image: url("Healthandcarebox.30170eee.avif");
+  background-size: cover;
+  height: 300px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.contructionbox {
+  background-image: url("Constructiontoolsbox.1a1951bf.avif");
+  background-size: cover;
+  height: 300px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.Fitness {
+  background-image: url("Fitnessbox.d93f2504.avif");
+  background-size: cover;
+  height: 300px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.kitchen {
+  background-image: url("Kitchentoolsbox.c2c661cb.avif");
+  background-size: cover;
+  height: 300px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.Fashion {
+  background-image: url("trendingfashionbox.09d8f874.avif");
+  background-size: cover;
+  height: 300px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.kidsbox {
+  background-image: url("Kidsfashionbox.d5b7fd21.avif");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 300px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.Sale {
+  background-image: url("Salebox.ca9fb8af.avif");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 300px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.border {
+  border: 1px solid #0000;
+}
+
+.border:hover {
+  border: 1px solid #fff;
+}
+
+.cart-item {
+  transition: transform .3s ease-in-out;
+  transform: scale(.8);
+}
+
+#remove-button {
+  color: red;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+@media only screen and (width <= 600px) {
+  .nav-bar {
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+  }
+
+  .nav-logo {
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    display: flex;
+  }
+
+  .search-bar {
+    height: 25px;
+    display: flex;
+  }
+
+  #select {
+    color: #fff;
+    background-color: #000;
+    height: 20px;
+  }
+
+  #search {
+    width: 250px;
+    height: 20px;
+    font-size: .9rem;
+  }
+
+  .Cart {
+    margin-top: 10px;
+  }
+
+  .cart-box {
+    width: 145px;
+    height: 262px;
+    margin-top: 112px;
+    top: 50px;
+    right: -250px;
+  }
+
+  .box {
+    width: 48%;
+    height: 300px;
+  }
+
+  .delivery {
+    font-size: .9rem;
+  }
+
+  .backgroundimage {
+    height: 300px;
+  }
+
+  .electronicsbox, .healthcarebox, .contructionbox, .Fitness, .kitchen, .Fashion, .kidsbox, .Sale {
+    height: 200px;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+  }
+}
+
+/*# sourceMappingURL=index.9e4c6fd2.css.map */

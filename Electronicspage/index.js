@@ -1,3 +1,34 @@
+const phones = [
+  {
+    id: "1",
+    Name: "Iphone14pro",
+    Price: "14000",
+    image: "./firstimage.webp",
+  },
+  {
+    id: "2",
+    Name: "Iphone13",
+    Price: "13000",
+    image: "./iphone13.avif",
+  },
+  {
+    id: "3",
+    Name: "Iphone12",
+    Price: "12000",
+    image: "./iphone12.avif",
+  },
+  {
+    id: "4",
+    Name: "Iphone11",
+    Price: "11000",
+    image: "./iphone11.webp",
+  },
+
+  { id: "5", Name: "Galaxys23", Price: "12000", image: "./Samsung23.avif" },
+  { id: "6", Name: "Galaxys22", Price: "11000", image: "./S22.avif" },
+  { id: "7", Name: "Galaxys21", Price: "10000", image: "./s21.webp" },
+  { id: "8", Name: "Galaxys20", Price: "9000", image: "./s20.jpg" },
+];
 
 const phones = [
   {
@@ -55,7 +86,11 @@ function additems(boxContent) {
   listItem.classList.add("item");
   itemDiv.classList.add("cart-item");
   if (
+<<<<<<< HEAD
     cartItems.children.length !== 0
+=======
+    !cartItems.children.length !== 0
+>>>>>>> 86e3a53c8d069e7b4678b3c63c6e31fd6556a1f0
       ? checkExistingItem(boxContent, cartItems)
       : true
   ) {

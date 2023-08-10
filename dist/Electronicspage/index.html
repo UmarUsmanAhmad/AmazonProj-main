@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/Electronicspage/index.881fee56.css">
+</head>
+
+<body>
+    <header>
+
+        <div class="nav-bar">
+            <div class="nav-logo border">
+                <div class="logo" onclick="homepage()"></div>
+            </div>
+            <div class="delivery border">
+                <p>Delivered to Sweden</p>
+            </div>
+            <div class="search-bar">
+                <select id="select">
+                    <option value="select">All Categories</option>
+                </select>
+                <input type="text" id="search" placeholder="Search">
+                <div class="search-logo border">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+            <div class="signin border">
+                <button class="login" onclick="loginwebsitefun()">Log in</button>
+            </div>
+            <div class="Cart border" onclick="ShowCartbox(event)">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <p>Cart</p>
+                <p id="numbers"></p>
+            </div>
+        </div>
+        <div class="cart-box" id="cart-box">
+            <div class="TotalItems">
+                <p>Total items:</p><b id="Totalitems"></b>
+            </div>
+            <ol id="cart-items">
+            </ol>
+            <div>
+                <p id="TotalPrice"></p>
+            </div>
+        </div>
+        <div class="shop-section" id="shopContainer">
+        </div>
+    </header>
+    <script src="/Electronicspage/index.8bda06b9.js"></script>
+
+<script src="/Electronicspage.6fd8027e.js"></script></body>
+
+</html>
