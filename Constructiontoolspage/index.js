@@ -16,64 +16,62 @@ function ShowCartbox(event) {
 
 document.addEventListener('click', ShowCartbox);
 
-//Function for adding items into Cart.
 function additems(boxContent) {
-const cartItems = document.getElementById("cart-items");
-const listItem = document.createElement("li");
-const itemDiv = document.createElement("div");
-itemDiv.classList.add("cart-item");
+  const cartItems = document.getElementById("cart-items");
+  const listItem = document.createElement("li");
+  const itemDiv = document.createElement("div");
+  listItem.classList.add("item");
+  itemDiv.classList.add("cart-item");
+  if (
+    cartItems.children.length !== 0
+      ? checkExistingItem(boxContent, cartItems)
+      : true
+  ) {
+    itemDiv.innerHTML = boxContent.innerHTML;
+    itemDiv.dataset.quantity = 1;
+    listItem.appendChild(itemDiv);
+    cartItems.appendChild(listItem);
 
-itemDiv.innerHTML = boxContent.innerHTML;
-itemDiv.dataset.quantity = 1;
-listItem.appendChild(itemDiv);
-cartItems.appendChild(listItem);
+    const addbuttn = itemDiv.querySelector("a");
+    if (addbuttn) {
+      addbuttn.remove();
+    }
+    quantityCounter(itemDiv);
+    minusButton(itemDiv);
+    plusButton(itemDiv);
+    removeButton(itemDiv);
+    totalquantityIncreament();
 
-const addbuttn = itemDiv.querySelector("a");
-if (addbuttn) {
-  addbuttn.remove();
-}
-quantityCounter(itemDiv);
-minusButton(itemDiv);
-plusButton(itemDiv);
-removeButton(itemDiv);
-totalquantityIncreament();
+    let totalPriceElement = document.getElementById("TotalPrice");
+    if (!totalPriceElement) {
+      totalPriceElement = document.createElement("div");
+      totalPriceElement.id = "TotalPrice";
+      document.getElementById("cart-box").appendChild(totalPriceElement);
+    }
 
-
-let totalPriceElement = document.getElementById("TotalPrice");
-if (!totalPriceElement) {
-  totalPriceElement = document.createElement("div");
-  totalPriceElement.id = "TotalPrice";
-  document.getElementById("cart-box").appendChild(totalPriceElement);
-}
-
-totalPrice();
-}
-/*
-function existingItem(boxContent) {
-const cartbox = document.getElementById("cart-box");
-const MobileName = boxContent.querySelector("h2").innerHTML;
-const newOl = cartbox.querySelector("ol");
-const newElem = newOl.getElementsByTagName("li");
-
-for (var i = 0; i < newElem.length; i++) {
-  const itemName = newElem[i].querySelector("h2").innerHTML;
-  
-  if (itemName === MobileName) {
-    const quantityText = newElem[i].querySelector("#Span");
-    const newQuantity = parseInt(newElem[i].dataset.quantity) + 1;
-    newElem[i].dataset.quantity = newQuantity;
-    quantityText.textContent = newQuantity;
-
-    x = parseInt(document.getElementById("Totalitems").innerText, 10);
-    x += 1;
-    document.getElementById("Totalitems").innerText = x;
-
-    return;
+    totalPrice();
   }
 }
-
-
-}*/
+//Check existing item
+function checkExistingItem(newItem, existingItems) {
+  var items = existingItems.getElementsByClassName("item");
+  let flag = true;
+  for (i = 0; i < items.length; i++) {
+    if (
+      items[i].querySelector("h2").innerHTML ===
+      newItem.querySelector("h2").innerHTML
+    ) {
+      const findIten = items[i].querySelector("div");
+      findIten.dataset.quantity = parseInt(findIten.dataset.quantity, 10) + 1;
+      totalquantityIncreament();
+      const quantityText = findIten.querySelector("#Span");
+      quantityText.textContent = findIten.dataset.quantity;
+      totalPrice();
+      return (flag = false);
+    }
+  }
+  return flag;
+}
 //RemoveButton Function
 function removeButton(listItem) {
   const removeButton = document.createElement("button");
@@ -156,11 +154,15 @@ function removeButton(listItem) {
 
 //TotalQuantity ++
 function totalquantityIncreament() {
-const numberswithcart = document.getElementById("numbers");
-let x = parseInt(numberswithcart.innerText, 10) + 1;
-numberswithcart.innerHTML = x;
-// TotalItems
-document.getElementById("Totalitems").innerText = x;
+  const numberswithcart = document.getElementById("numbers");
+  console.log(numberswithcart.innerHTML);
+  let x = !numberswithcart.innerHTML
+    ? 1
+    : parseInt(numberswithcart.innerHTML, 10) + 1;
+
+  numberswithcart.innerHTML = x;
+  // TotalItems
+  document.getElementById("Totalitems").innerText = x;
 }
 //TotalQuantity --
 function totalquantityDecreament() {
